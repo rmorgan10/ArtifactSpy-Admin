@@ -137,7 +137,7 @@ while not grabbed_enough_good_data:
         os.system('cp Stamps/*{}.gif MatchedStamps'.format(objid))
 
         # A fraction of the time, send the stamp set to my_labels
-        random_integer = random.randint(1, 40)
+        random_integer = random.randint(1, 10)
         if random_integer == 6:
             os.system('cp Stamps/*{}.gif my_labels/stamps'.format(objid))
 
@@ -169,8 +169,8 @@ garb = input("\nDone! Press ENTER to continue.")
 os.system('kinit ramorgan2@HEP.WISC.EDU')
 
 # Send stamps and metadata to DES_DATA directory on HEP cluster
-os.system('scp MatchedStamps/{}.tar.gz ramorgan2@login04.hep.wisc.edu:/afs/hep.wisc.edu/home/ramorgan2/DES_DATA/ImageBank/Tarballs >> commands.log'.format(timestamp))
-os.system('scp MetaData/{}.csv ramorgan2@login04.hep.wisc.edu:/afs/hep.wisc.edu/home/ramorgan2/DES_DATA/Results/Metadata >> commands.log'.format(timestamp))
+os.system('scp MatchedStamps/{}.tar.gz ramorgan2@login04.hep.wisc.edu:/afs/hep.wisc.edu/bechtol-group/ArtifactSpy/ImageBank/Tarballs >> commands.log'.format(timestamp))
+os.system('scp MetaData/{}.csv ramorgan2@login04.hep.wisc.edu:/afs/hep.wisc.edu/bechtol-group/ArtifactSpy/Results/Metadata >> commands.log'.format(timestamp))
 
 # Clean up files on local machine
 os.system('rm DataFiles/*.dat')
@@ -178,4 +178,4 @@ os.system('rm MatchedStamps/*.tar.gz')
 os.system('rm -rf MatchedStamps/' + timestamp)
 
 # Trigger organize.py on HEP Cluster to sort new data
-os.system("ssh ramorgan2@login04.hep.wisc.edu '/afs/hep.wisc.edu/home/ramorgan2/DES_DATA/organize_sort.py'")
+os.system("ssh ramorgan2@login04.hep.wisc.edu '/afs/hep.wisc.edu/bechtol-group/ArtifactSpy/organize_sort.py'")
