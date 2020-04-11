@@ -142,7 +142,15 @@ while not grabbed_enough_good_data:
             os.system('cp Stamps/*{}.gif my_labels/stamps'.format(objid))
 
     # Delete unmatched stamps to avoid overlap
-    os.system('rm Stamps/*')
+    err_code = os.system('rm Stamps/*')
+    if err_code != 0:
+        os.system('rm Stamps/*.gz')
+        for ii in range(10):
+            err_1 = os.system('rm Stamps/*{}.gif'.format(ii))
+            err_2 = os.system('rm Stamps/*{}.fits'.format(ii))
+            if err_1 != 0 or err_2 != 0:
+                print("Exiting to prevent duplicates in Stamps/ directory")
+                sys.exit()
 
     if number_of_objects > 1000:
         grabbed_enough_good_data = True
