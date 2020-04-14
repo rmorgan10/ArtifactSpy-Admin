@@ -36,7 +36,7 @@ for counter, objid in enumerate(objids):
         print("Do it right this time, please.")
         choice = gui.user_action
         while choice == "Back":
-            gui = viewer.Interface(objid)
+            gui = viewer.Interface(objid, path=path)
             choice = gui.user_action
         print("There, thanks for getting it right, doofus.")
 
