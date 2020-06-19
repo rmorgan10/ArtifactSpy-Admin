@@ -10,6 +10,7 @@ log.txt
 master_map.csv
 stamp_paths.txt
 validate_map.ipynb
+test_chunks.ipynb
 y6_diffimg_map.csv
 .ipynb_checkpoints/
 *~
