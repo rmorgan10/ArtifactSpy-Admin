@@ -111,6 +111,11 @@ while not grabbed_enough_good_data:
         if lc.shape[0] == 0:
             continue
 
+        # Trim lc to only entries with ML SCORE > 0.9
+        lc = lc[lc['PHOTPROB'].values > 0.8].copy().reset_index(drop=True)
+        if lc.shape[0] == 0:
+            continue
+        
         # If we get here, everything is good, so extract data from dat file
         meta_data.append([lc['MJD'].values[0],
                           lc['FLT'].values[0],
