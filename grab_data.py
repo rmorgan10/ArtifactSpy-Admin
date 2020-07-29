@@ -162,7 +162,7 @@ while not grabbed_enough_good_data:
                 print("Exiting to prevent duplicates in Stamps/ directory")
                 sys.exit()
 
-    if number_of_objects > 1000:
+    if number_of_objects > 500:
         grabbed_enough_good_data = True
 
 # Update the log file to track the stamp path we left off at
