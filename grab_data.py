@@ -65,7 +65,12 @@ while not grabbed_enough_good_data:
     # Grab the next stamp tarball and unpack it
     stamp_path = stamp_paths[stamp_path_index].strip()
     tarball = stamp_path.split('/')[-1]
-    os.system('scp rmorgan@des40.fnal.gov:{} Stamps >> commands.log'.format(stamp_path))
+    err_code = os.system('scp rmorgan@des40.fnal.gov:{} Stamps >> commands.log'.format(stamp_path))
+    if err_code != 0:
+        # if the internet times out, just send what we have so far
+        print("Connection timed out. Sending what has already been organized")
+        break
+
     os.chdir('Stamps')
     os.system('tar -xzf {}'.format(tarball))
     os.chdir('..')
